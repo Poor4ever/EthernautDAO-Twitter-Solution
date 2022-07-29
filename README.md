@@ -6,13 +6,9 @@ Twitter Link:https://twitter.com/EthernautDAO/status/1548638648974749696
 - [CarMarket.sol](https://github.com/Poor4ever/EthernautDAO-Twitter-Solution/blob/main/src/Cars/CarMarket.sol) 
 - [CarFactory.sol](https://github.com/Poor4ever/EthernautDAO-Twitter-Solution/blob/main/src/Cars/CarFactory.sol) 
 
-
-
 ## 完成题目条件
 
 需要从 CarMarket 合约购买两辆车.
-
-
 
 ## 解题
 
@@ -34,6 +30,8 @@ Twitter Link:https://twitter.com/EthernautDAO/status/1548638648974749696
 问题出在 `CarFactory` 的回退函数委托调用我们是可以任意输入的,如果通过它去委托调用 `CarFactory` 的 flashLoan() 函数,执行的上下文是在 `CarMarket` 合约,收到的是 `CarMarket` 合约 transfer()的 CarToken ,回调 receivedCarToken() 后,判断的是 `CarFactory` 合约CarToken 余额没变化,即我们可以不用偿还,完成这次闪电贷从 `CarMarket` 购买第二辆车.
 
 编写 Exp 测试完成挑战
+
+forge test -vvv
 
 [Car.t.sol](https://github.com/Poor4ever/EthernautDAO-Twitter-Solution/blob/main/src/test/Car.t.sol) 
 
@@ -65,8 +63,3 @@ contract Exploit {
 
 }
 ```
-
-
-
-
-
